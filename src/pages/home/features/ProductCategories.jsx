@@ -109,7 +109,7 @@ const ProductCategories = () => {
             >
               <div className="relative bg-card rounded-2xl p-6 sm:p-8 shadow-sm border hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden">
                 {/* Background gradient on hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-teal-500/10 to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-linear-to-br from-teal-500/10 to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                 <div className="relative z-10">
                   {/* Icon */}

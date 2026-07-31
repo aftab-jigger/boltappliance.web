@@ -10,7 +10,7 @@ import StarRating from "@/components/ui/star-rating";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 import ProductImageWithFallback from "@/components/ui/product-image-with-fallback";
 
-const CARD_MIN_WIDTH = 280;
+const CARD_WIDTH = 280;
 const CARD_GAP = 16;
 
 function ProductCard({ product }) {
@@ -19,23 +19,26 @@ function ProductCard({ product }) {
   return (
     <Link
       to={`/products/${categorySlug}/${product.id}`}
-      className="group flex-shrink-0 snap-start snap-always"
-      style={{ minWidth: `min(100%, ${CARD_MIN_WIDTH}px)` }}
+      className="group flex-none snap-start snap-always"
+      style={{
+        width: `min(100%, ${CARD_WIDTH}px)`,
+        maxWidth: `${CARD_WIDTH}px`,
+      }}
     >
       <div className="bg-card rounded-xl sm:rounded-2xl shadow-sm border hover:shadow-xl transition-all duration-300 hover:-translate-y-1 overflow-hidden h-full flex flex-col mx-1 sm:mx-1.5">
-        <div className="relative overflow-hidden bg-gradient-to-br from-teal-50 to-cyan-50 p-3 sm:p-4">
-          <div className="relative h-44 sm:h-52 overflow-hidden flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+        <div className="relative overflow-hidden bg-linear-to-br from-teal-50 to-cyan-50 p-3 sm:p-4">
+          <div className="relative h-44 sm:h-52 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
             <ProductImageWithFallback
               src={product.image}
               alt={product.name}
-              className="w-full h-full object-cover rounded-lg"
+              className="w-full h-full object-contain rounded-lg"
               loading="lazy"
               decoding="async"
               sizes="(max-width: 640px) 90vw, 280px"
             />
           </div>
           {product.originalPrice > product.price && (
-            <div className="absolute top-2 left-2 bg-gradient-to-r from-teal-500 to-cyan-500 text-white text-xs font-semibold px-2 py-0.5 rounded-full">
+            <div className="absolute top-2 left-2 bg-linear-to-r from-teal-500 to-cyan-500 text-white text-xs font-semibold px-2 py-0.5 rounded-full">
               {Math.round((1 - product.price / product.originalPrice) * 100)}%
               OFF
             </div>
