@@ -12,7 +12,8 @@ export const products = [
     "longDescription": "This premium microwave oven combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 3.9,
     "reviews": 314,
-    "category": "Microwave Oven",
+    "category": "cooking",
+    "subcategory": "microwave-ovens",
     "brand": "Samsung",
     "image": "https://images.pexels.com/photos/6996034/pexels-photo-6996034.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -46,7 +47,8 @@ export const products = [
     "longDescription": "This premium microwave oven combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 3.9,
     "reviews": 421,
-    "category": "Microwave Oven",
+    "category": "cooking",
+    "subcategory": "microwave-ovens",
     "brand": "LG",
     "image": "https://images.pexels.com/photos/4108710/pexels-photo-4108710.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -80,7 +82,8 @@ export const products = [
     "longDescription": "This premium microwave oven combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.2,
     "reviews": 268,
-    "category": "Microwave Oven",
+    "category": "cooking",
+    "subcategory": "microwave-ovens",
     "brand": "Bosch",
     "image": "https://images.pexels.com/photos/5591653/pexels-photo-5591653.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -114,7 +117,8 @@ export const products = [
     "longDescription": "This premium microwave oven combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.2,
     "reviews": 217,
-    "category": "Microwave Oven",
+    "category": "cooking",
+    "subcategory": "microwave-ovens",
     "brand": "Whirlpool",
     "image": "https://images.pexels.com/photos/5825364/pexels-photo-5825364.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -148,7 +152,8 @@ export const products = [
     "longDescription": "This premium microwave oven combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 3.6,
     "reviews": 70,
-    "category": "Microwave Oven",
+    "category": "cooking",
+    "subcategory": "microwave-ovens",
     "brand": "Siemens",
     "image": "https://images.pexels.com/photos/6996034/pexels-photo-6996034.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -182,7 +187,8 @@ export const products = [
     "longDescription": "This premium microwave oven combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.2,
     "reviews": 393,
-    "category": "Microwave Oven",
+    "category": "cooking",
+    "subcategory": "microwave-ovens",
     "brand": "Miele",
     "image": "https://images.pexels.com/photos/4108710/pexels-photo-4108710.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -216,7 +222,8 @@ export const products = [
     "longDescription": "This premium microwave oven combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.9,
     "reviews": 403,
-    "category": "Microwave Oven",
+    "category": "cooking",
+    "subcategory": "microwave-ovens",
     "brand": "Samsung",
     "image": "https://images.pexels.com/photos/5591653/pexels-photo-5591653.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -250,7 +257,8 @@ export const products = [
     "longDescription": "This premium microwave oven combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.4,
     "reviews": 198,
-    "category": "Microwave Oven",
+    "category": "cooking",
+    "subcategory": "microwave-ovens",
     "brand": "LG",
     "image": "https://images.pexels.com/photos/5825364/pexels-photo-5825364.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -284,7 +292,8 @@ export const products = [
     "longDescription": "This premium microwave oven combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 3.6,
     "reviews": 221,
-    "category": "Microwave Oven",
+    "category": "cooking",
+    "subcategory": "microwave-ovens",
     "brand": "Bosch",
     "image": "https://images.pexels.com/photos/6996034/pexels-photo-6996034.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -318,7 +327,8 @@ export const products = [
     "longDescription": "This premium microwave oven combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 3.9,
     "reviews": 187,
-    "category": "Microwave Oven",
+    "category": "cooking",
+    "subcategory": "microwave-ovens",
     "brand": "Whirlpool",
     "image": "https://images.pexels.com/photos/4108710/pexels-photo-4108710.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -352,7 +362,8 @@ export const products = [
     "longDescription": "This premium microwave oven combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.9,
     "reviews": 228,
-    "category": "Microwave Oven",
+    "category": "cooking",
+    "subcategory": "microwave-ovens",
     "brand": "Siemens",
     "image": "https://images.pexels.com/photos/5591653/pexels-photo-5591653.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -386,7 +397,8 @@ export const products = [
     "longDescription": "This premium microwave oven combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.5,
     "reviews": 430,
-    "category": "Microwave Oven",
+    "category": "cooking",
+    "subcategory": "microwave-ovens",
     "brand": "Miele",
     "image": "https://images.pexels.com/photos/5825364/pexels-photo-5825364.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -420,7 +432,8 @@ export const products = [
     "longDescription": "This premium microwave oven combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.5,
     "reviews": 337,
-    "category": "Microwave Oven",
+    "category": "cooking",
+    "subcategory": "microwave-ovens",
     "brand": "Samsung",
     "image": "https://images.pexels.com/photos/6996034/pexels-photo-6996034.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -454,7 +467,8 @@ export const products = [
     "longDescription": "This premium microwave oven combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.8,
     "reviews": 180,
-    "category": "Microwave Oven",
+    "category": "cooking",
+    "subcategory": "microwave-ovens",
     "brand": "LG",
     "image": "https://images.pexels.com/photos/4108710/pexels-photo-4108710.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -488,7 +502,8 @@ export const products = [
     "longDescription": "This premium microwave oven combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 3.7,
     "reviews": 339,
-    "category": "Microwave Oven",
+    "category": "cooking",
+    "subcategory": "microwave-ovens",
     "brand": "Bosch",
     "image": "https://images.pexels.com/photos/5591653/pexels-photo-5591653.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -522,7 +537,8 @@ export const products = [
     "longDescription": "This premium dishwasher combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.2,
     "reviews": 43,
-    "category": "Dishwasher",
+    "category": "dishwashers",
+    "subcategory": "dishwashers",
     "brand": "Samsung",
     "image": "https://images.pexels.com/photos/5824519/pexels-photo-5824519.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -556,7 +572,8 @@ export const products = [
     "longDescription": "This premium dishwasher combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.9,
     "reviews": 27,
-    "category": "Dishwasher",
+    "category": "dishwashers",
+    "subcategory": "dishwashers",
     "brand": "LG",
     "image": "https://images.pexels.com/photos/5824894/pexels-photo-5824894.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -590,7 +607,8 @@ export const products = [
     "longDescription": "This premium dishwasher combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.3,
     "reviews": 129,
-    "category": "Dishwasher",
+    "category": "dishwashers",
+    "subcategory": "dishwashers",
     "brand": "Bosch",
     "image": "https://images.pexels.com/photos/4239033/pexels-photo-4239033.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -624,7 +642,8 @@ export const products = [
     "longDescription": "This premium dishwasher combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4,
     "reviews": 439,
-    "category": "Dishwasher",
+    "category": "dishwashers",
+    "subcategory": "dishwashers",
     "brand": "Whirlpool",
     "image": "https://images.pexels.com/photos/4907060/pexels-photo-4907060.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -658,7 +677,8 @@ export const products = [
     "longDescription": "This premium dishwasher combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.2,
     "reviews": 53,
-    "category": "Dishwasher",
+    "category": "dishwashers",
+    "subcategory": "dishwashers",
     "brand": "Siemens",
     "image": "https://images.pexels.com/photos/5824519/pexels-photo-5824519.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -692,7 +712,8 @@ export const products = [
     "longDescription": "This premium dishwasher combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.3,
     "reviews": 307,
-    "category": "Dishwasher",
+    "category": "dishwashers",
+    "subcategory": "dishwashers",
     "brand": "Miele",
     "image": "https://images.pexels.com/photos/5824894/pexels-photo-5824894.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -726,7 +747,8 @@ export const products = [
     "longDescription": "This premium dishwasher combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.2,
     "reviews": 361,
-    "category": "Dishwasher",
+    "category": "dishwashers",
+    "subcategory": "dishwashers",
     "brand": "Samsung",
     "image": "https://images.pexels.com/photos/4239033/pexels-photo-4239033.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -760,7 +782,8 @@ export const products = [
     "longDescription": "This premium dishwasher combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.6,
     "reviews": 155,
-    "category": "Dishwasher",
+    "category": "dishwashers",
+    "subcategory": "dishwashers",
     "brand": "LG",
     "image": "https://images.pexels.com/photos/4907060/pexels-photo-4907060.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -794,7 +817,8 @@ export const products = [
     "longDescription": "This premium dishwasher combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4,
     "reviews": 427,
-    "category": "Dishwasher",
+    "category": "dishwashers",
+    "subcategory": "dishwashers",
     "brand": "Bosch",
     "image": "https://images.pexels.com/photos/5824519/pexels-photo-5824519.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -828,7 +852,8 @@ export const products = [
     "longDescription": "This premium dishwasher combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.3,
     "reviews": 384,
-    "category": "Dishwasher",
+    "category": "dishwashers",
+    "subcategory": "dishwashers",
     "brand": "Whirlpool",
     "image": "https://images.pexels.com/photos/5824894/pexels-photo-5824894.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -862,7 +887,8 @@ export const products = [
     "longDescription": "This premium dishwasher combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4,
     "reviews": 330,
-    "category": "Dishwasher",
+    "category": "dishwashers",
+    "subcategory": "dishwashers",
     "brand": "Siemens",
     "image": "https://images.pexels.com/photos/4239033/pexels-photo-4239033.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -896,7 +922,8 @@ export const products = [
     "longDescription": "This premium dishwasher combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 3.6,
     "reviews": 11,
-    "category": "Dishwasher",
+    "category": "dishwashers",
+    "subcategory": "dishwashers",
     "brand": "Miele",
     "image": "https://images.pexels.com/photos/4907060/pexels-photo-4907060.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -930,7 +957,8 @@ export const products = [
     "longDescription": "This premium dishwasher combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.5,
     "reviews": 350,
-    "category": "Dishwasher",
+    "category": "dishwashers",
+    "subcategory": "dishwashers",
     "brand": "Samsung",
     "image": "https://images.pexels.com/photos/5824519/pexels-photo-5824519.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -964,7 +992,8 @@ export const products = [
     "longDescription": "This premium dishwasher combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.1,
     "reviews": 245,
-    "category": "Dishwasher",
+    "category": "dishwashers",
+    "subcategory": "dishwashers",
     "brand": "LG",
     "image": "https://images.pexels.com/photos/5824894/pexels-photo-5824894.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -998,7 +1027,8 @@ export const products = [
     "longDescription": "This premium dishwasher combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4,
     "reviews": 27,
-    "category": "Dishwasher",
+    "category": "dishwashers",
+    "subcategory": "dishwashers",
     "brand": "Bosch",
     "image": "https://images.pexels.com/photos/4239033/pexels-photo-4239033.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -1032,7 +1062,8 @@ export const products = [
     "longDescription": "This premium dryer combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 3.8,
     "reviews": 145,
-    "category": "Dryer",
+    "category": "laundry",
+    "subcategory": "dryers",
     "brand": "Samsung",
     "image": "https://images.pexels.com/photos/5591826/pexels-photo-5591826.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -1066,7 +1097,8 @@ export const products = [
     "longDescription": "This premium dryer combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 3.9,
     "reviews": 122,
-    "category": "Dryer",
+    "category": "laundry",
+    "subcategory": "dryers",
     "brand": "LG",
     "image": "https://images.pexels.com/photos/5591688/pexels-photo-5591688.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -1100,7 +1132,8 @@ export const products = [
     "longDescription": "This premium dryer combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.3,
     "reviews": 110,
-    "category": "Dryer",
+    "category": "laundry",
+    "subcategory": "dryers",
     "brand": "Bosch",
     "image": "https://images.pexels.com/photos/4239031/pexels-photo-4239031.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -1134,7 +1167,8 @@ export const products = [
     "longDescription": "This premium dryer combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.5,
     "reviews": 170,
-    "category": "Dryer",
+    "category": "laundry",
+    "subcategory": "dryers",
     "brand": "Whirlpool",
     "image": "https://images.pexels.com/photos/5825563/pexels-photo-5825563.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -1168,7 +1202,8 @@ export const products = [
     "longDescription": "This premium dryer combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.2,
     "reviews": 411,
-    "category": "Dryer",
+    "category": "laundry",
+    "subcategory": "dryers",
     "brand": "Siemens",
     "image": "https://images.pexels.com/photos/5591826/pexels-photo-5591826.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -1202,7 +1237,8 @@ export const products = [
     "longDescription": "This premium dryer combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4,
     "reviews": 115,
-    "category": "Dryer",
+    "category": "laundry",
+    "subcategory": "dryers",
     "brand": "Miele",
     "image": "https://images.pexels.com/photos/5591688/pexels-photo-5591688.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -1236,7 +1272,8 @@ export const products = [
     "longDescription": "This premium dryer combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.1,
     "reviews": 248,
-    "category": "Dryer",
+    "category": "laundry",
+    "subcategory": "dryers",
     "brand": "Samsung",
     "image": "https://images.pexels.com/photos/4239031/pexels-photo-4239031.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -1270,7 +1307,8 @@ export const products = [
     "longDescription": "This premium dryer combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 3.6,
     "reviews": 481,
-    "category": "Dryer",
+    "category": "laundry",
+    "subcategory": "dryers",
     "brand": "LG",
     "image": "https://images.pexels.com/photos/5825563/pexels-photo-5825563.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -1304,7 +1342,8 @@ export const products = [
     "longDescription": "This premium dryer combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 3.6,
     "reviews": 60,
-    "category": "Dryer",
+    "category": "laundry",
+    "subcategory": "dryers",
     "brand": "Bosch",
     "image": "https://images.pexels.com/photos/5591826/pexels-photo-5591826.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -1338,7 +1377,8 @@ export const products = [
     "longDescription": "This premium dryer combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.2,
     "reviews": 78,
-    "category": "Dryer",
+    "category": "laundry",
+    "subcategory": "dryers",
     "brand": "Whirlpool",
     "image": "https://images.pexels.com/photos/5591688/pexels-photo-5591688.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -1372,7 +1412,8 @@ export const products = [
     "longDescription": "This premium dryer combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 3.7,
     "reviews": 245,
-    "category": "Dryer",
+    "category": "laundry",
+    "subcategory": "dryers",
     "brand": "Siemens",
     "image": "https://images.pexels.com/photos/4239031/pexels-photo-4239031.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -1406,7 +1447,8 @@ export const products = [
     "longDescription": "This premium dryer combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4,
     "reviews": 381,
-    "category": "Dryer",
+    "category": "laundry",
+    "subcategory": "dryers",
     "brand": "Miele",
     "image": "https://images.pexels.com/photos/5825563/pexels-photo-5825563.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -1440,7 +1482,8 @@ export const products = [
     "longDescription": "This premium dryer combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.4,
     "reviews": 208,
-    "category": "Dryer",
+    "category": "laundry",
+    "subcategory": "dryers",
     "brand": "Samsung",
     "image": "https://images.pexels.com/photos/5591826/pexels-photo-5591826.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -1474,7 +1517,8 @@ export const products = [
     "longDescription": "This premium dryer combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.9,
     "reviews": 172,
-    "category": "Dryer",
+    "category": "laundry",
+    "subcategory": "dryers",
     "brand": "LG",
     "image": "https://images.pexels.com/photos/5591688/pexels-photo-5591688.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -1508,7 +1552,8 @@ export const products = [
     "longDescription": "This premium dryer combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 3.9,
     "reviews": 208,
-    "category": "Dryer",
+    "category": "laundry",
+    "subcategory": "dryers",
     "brand": "Bosch",
     "image": "https://images.pexels.com/photos/4239031/pexels-photo-4239031.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -1542,7 +1587,8 @@ export const products = [
     "longDescription": "This premium refrigerator combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.3,
     "reviews": 226,
-    "category": "Refrigerator",
+    "category": "refrigeration",
+    "subcategory": "refrigerators",
     "brand": "Samsung",
     "image": "https://images.pexels.com/photos/5825362/pexels-photo-5825362.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -1576,7 +1622,8 @@ export const products = [
     "longDescription": "This premium refrigerator combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 3.7,
     "reviews": 318,
-    "category": "Refrigerator",
+    "category": "refrigeration",
+    "subcategory": "refrigerators",
     "brand": "LG",
     "image": "https://images.pexels.com/photos/5824514/pexels-photo-5824514.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -1610,7 +1657,8 @@ export const products = [
     "longDescription": "This premium refrigerator combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.3,
     "reviews": 387,
-    "category": "Refrigerator",
+    "category": "refrigeration",
+    "subcategory": "refrigerators",
     "brand": "Bosch",
     "image": "https://images.pexels.com/photos/5824885/pexels-photo-5824885.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -1644,7 +1692,8 @@ export const products = [
     "longDescription": "This premium refrigerator combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 3.5,
     "reviews": 132,
-    "category": "Refrigerator",
+    "category": "refrigeration",
+    "subcategory": "refrigerators",
     "brand": "Whirlpool",
     "image": "https://images.pexels.com/photos/4239091/pexels-photo-4239091.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -1678,7 +1727,8 @@ export const products = [
     "longDescription": "This premium refrigerator combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.6,
     "reviews": 229,
-    "category": "Refrigerator",
+    "category": "refrigeration",
+    "subcategory": "refrigerators",
     "brand": "Siemens",
     "image": "https://images.pexels.com/photos/5825362/pexels-photo-5825362.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -1712,7 +1762,8 @@ export const products = [
     "longDescription": "This premium refrigerator combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.9,
     "reviews": 57,
-    "category": "Refrigerator",
+    "category": "refrigeration",
+    "subcategory": "refrigerators",
     "brand": "Miele",
     "image": "https://images.pexels.com/photos/5824514/pexels-photo-5824514.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -1746,7 +1797,8 @@ export const products = [
     "longDescription": "This premium refrigerator combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 3.9,
     "reviews": 432,
-    "category": "Refrigerator",
+    "category": "refrigeration",
+    "subcategory": "refrigerators",
     "brand": "Samsung",
     "image": "https://images.pexels.com/photos/5824885/pexels-photo-5824885.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -1780,7 +1832,8 @@ export const products = [
     "longDescription": "This premium refrigerator combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.5,
     "reviews": 296,
-    "category": "Refrigerator",
+    "category": "refrigeration",
+    "subcategory": "refrigerators",
     "brand": "LG",
     "image": "https://images.pexels.com/photos/4239091/pexels-photo-4239091.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -1814,7 +1867,8 @@ export const products = [
     "longDescription": "This premium refrigerator combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.1,
     "reviews": 116,
-    "category": "Refrigerator",
+    "category": "refrigeration",
+    "subcategory": "refrigerators",
     "brand": "Bosch",
     "image": "https://images.pexels.com/photos/5825362/pexels-photo-5825362.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -1848,7 +1902,8 @@ export const products = [
     "longDescription": "This premium refrigerator combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.2,
     "reviews": 255,
-    "category": "Refrigerator",
+    "category": "refrigeration",
+    "subcategory": "refrigerators",
     "brand": "Whirlpool",
     "image": "https://images.pexels.com/photos/5824514/pexels-photo-5824514.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -1882,7 +1937,8 @@ export const products = [
     "longDescription": "This premium refrigerator combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.8,
     "reviews": 316,
-    "category": "Refrigerator",
+    "category": "refrigeration",
+    "subcategory": "refrigerators",
     "brand": "Siemens",
     "image": "https://images.pexels.com/photos/5824885/pexels-photo-5824885.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -1916,7 +1972,8 @@ export const products = [
     "longDescription": "This premium refrigerator combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.1,
     "reviews": 198,
-    "category": "Refrigerator",
+    "category": "refrigeration",
+    "subcategory": "refrigerators",
     "brand": "Miele",
     "image": "https://images.pexels.com/photos/4239091/pexels-photo-4239091.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -1950,7 +2007,8 @@ export const products = [
     "longDescription": "This premium refrigerator combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.5,
     "reviews": 353,
-    "category": "Refrigerator",
+    "category": "refrigeration",
+    "subcategory": "refrigerators",
     "brand": "Samsung",
     "image": "https://images.pexels.com/photos/5825362/pexels-photo-5825362.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -1984,7 +2042,8 @@ export const products = [
     "longDescription": "This premium refrigerator combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.8,
     "reviews": 177,
-    "category": "Refrigerator",
+    "category": "refrigeration",
+    "subcategory": "refrigerators",
     "brand": "LG",
     "image": "https://images.pexels.com/photos/5824514/pexels-photo-5824514.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -2018,7 +2077,8 @@ export const products = [
     "longDescription": "This premium refrigerator combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.6,
     "reviews": 58,
-    "category": "Refrigerator",
+    "category": "refrigeration",
+    "subcategory": "refrigerators",
     "brand": "Bosch",
     "image": "https://images.pexels.com/photos/5824885/pexels-photo-5824885.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -2052,7 +2112,8 @@ export const products = [
     "longDescription": "This premium cooker combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.1,
     "reviews": 178,
-    "category": "Cooker",
+    "category": "cooking",
+    "subcategory": "cookers",
     "brand": "Samsung",
     "image": "https://images.pexels.com/photos/4108270/pexels-photo-4108270.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -2086,7 +2147,8 @@ export const products = [
     "longDescription": "This premium cooker combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.3,
     "reviews": 313,
-    "category": "Cooker",
+    "category": "cooking",
+    "subcategory": "cookers",
     "brand": "LG",
     "image": "https://images.pexels.com/photos/4252136/pexels-photo-4252136.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -2120,7 +2182,8 @@ export const products = [
     "longDescription": "This premium cooker combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.5,
     "reviews": 316,
-    "category": "Cooker",
+    "category": "cooking",
+    "subcategory": "cookers",
     "brand": "Bosch",
     "image": "https://images.pexels.com/photos/4108294/pexels-photo-4108294.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -2154,7 +2217,8 @@ export const products = [
     "longDescription": "This premium cooker combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 3.6,
     "reviews": 86,
-    "category": "Cooker",
+    "category": "cooking",
+    "subcategory": "cookers",
     "brand": "Whirlpool",
     "image": "https://images.pexels.com/photos/4108274/pexels-photo-4108274.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -2188,7 +2252,8 @@ export const products = [
     "longDescription": "This premium cooker combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.7,
     "reviews": 90,
-    "category": "Cooker",
+    "category": "cooking",
+    "subcategory": "cookers",
     "brand": "Siemens",
     "image": "https://images.pexels.com/photos/4108270/pexels-photo-4108270.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -2222,7 +2287,8 @@ export const products = [
     "longDescription": "This premium cooker combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4,
     "reviews": 291,
-    "category": "Cooker",
+    "category": "cooking",
+    "subcategory": "cookers",
     "brand": "Miele",
     "image": "https://images.pexels.com/photos/4252136/pexels-photo-4252136.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -2256,7 +2322,8 @@ export const products = [
     "longDescription": "This premium cooker combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 3.8,
     "reviews": 472,
-    "category": "Cooker",
+    "category": "cooking",
+    "subcategory": "cookers",
     "brand": "Samsung",
     "image": "https://images.pexels.com/photos/4108294/pexels-photo-4108294.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -2290,7 +2357,8 @@ export const products = [
     "longDescription": "This premium cooker combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 3.9,
     "reviews": 143,
-    "category": "Cooker",
+    "category": "cooking",
+    "subcategory": "cookers",
     "brand": "LG",
     "image": "https://images.pexels.com/photos/4108274/pexels-photo-4108274.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -2324,7 +2392,8 @@ export const products = [
     "longDescription": "This premium cooker combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.6,
     "reviews": 152,
-    "category": "Cooker",
+    "category": "cooking",
+    "subcategory": "cookers",
     "brand": "Bosch",
     "image": "https://images.pexels.com/photos/4108270/pexels-photo-4108270.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -2358,7 +2427,8 @@ export const products = [
     "longDescription": "This premium cooker combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.6,
     "reviews": 228,
-    "category": "Cooker",
+    "category": "cooking",
+    "subcategory": "cookers",
     "brand": "Whirlpool",
     "image": "https://images.pexels.com/photos/4252136/pexels-photo-4252136.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -2392,7 +2462,8 @@ export const products = [
     "longDescription": "This premium cooker combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.6,
     "reviews": 216,
-    "category": "Cooker",
+    "category": "cooking",
+    "subcategory": "cookers",
     "brand": "Siemens",
     "image": "https://images.pexels.com/photos/4108294/pexels-photo-4108294.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -2426,7 +2497,8 @@ export const products = [
     "longDescription": "This premium cooker combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.1,
     "reviews": 290,
-    "category": "Cooker",
+    "category": "cooking",
+    "subcategory": "cookers",
     "brand": "Miele",
     "image": "https://images.pexels.com/photos/4108274/pexels-photo-4108274.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -2460,7 +2532,8 @@ export const products = [
     "longDescription": "This premium cooker combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 3.9,
     "reviews": 455,
-    "category": "Cooker",
+    "category": "cooking",
+    "subcategory": "cookers",
     "brand": "Samsung",
     "image": "https://images.pexels.com/photos/4108270/pexels-photo-4108270.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -2494,7 +2567,8 @@ export const products = [
     "longDescription": "This premium cooker combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 3.8,
     "reviews": 358,
-    "category": "Cooker",
+    "category": "cooking",
+    "subcategory": "cookers",
     "brand": "LG",
     "image": "https://images.pexels.com/photos/4252136/pexels-photo-4252136.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -2528,7 +2602,8 @@ export const products = [
     "longDescription": "This premium cooker combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.2,
     "reviews": 168,
-    "category": "Cooker",
+    "category": "cooking",
+    "subcategory": "cookers",
     "brand": "Bosch",
     "image": "https://images.pexels.com/photos/4108294/pexels-photo-4108294.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -2562,7 +2637,8 @@ export const products = [
     "longDescription": "This premium hobs combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 3.6,
     "reviews": 67,
-    "category": "Hobs",
+    "category": "cooking",
+    "subcategory": "hobs",
     "brand": "Samsung",
     "image": "https://images.pexels.com/photos/4108719/pexels-photo-4108719.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -2596,7 +2672,8 @@ export const products = [
     "longDescription": "This premium hobs combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.3,
     "reviews": 479,
-    "category": "Hobs",
+    "category": "cooking",
+    "subcategory": "hobs",
     "brand": "LG",
     "image": "https://images.pexels.com/photos/5591595/pexels-photo-5591595.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -2630,7 +2707,8 @@ export const products = [
     "longDescription": "This premium hobs combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.2,
     "reviews": 233,
-    "category": "Hobs",
+    "category": "cooking",
+    "subcategory": "hobs",
     "brand": "Bosch",
     "image": "https://images.pexels.com/photos/5591647/pexels-photo-5591647.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -2664,7 +2742,8 @@ export const products = [
     "longDescription": "This premium hobs combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.7,
     "reviews": 487,
-    "category": "Hobs",
+    "category": "cooking",
+    "subcategory": "hobs",
     "brand": "Whirlpool",
     "image": "https://images.pexels.com/photos/4108278/pexels-photo-4108278.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -2698,7 +2777,8 @@ export const products = [
     "longDescription": "This premium hobs combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.4,
     "reviews": 402,
-    "category": "Hobs",
+    "category": "cooking",
+    "subcategory": "hobs",
     "brand": "Siemens",
     "image": "https://images.pexels.com/photos/4108719/pexels-photo-4108719.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -2732,7 +2812,8 @@ export const products = [
     "longDescription": "This premium hobs combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.5,
     "reviews": 449,
-    "category": "Hobs",
+    "category": "cooking",
+    "subcategory": "hobs",
     "brand": "Miele",
     "image": "https://images.pexels.com/photos/5591595/pexels-photo-5591595.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -2766,7 +2847,8 @@ export const products = [
     "longDescription": "This premium hobs combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.5,
     "reviews": 314,
-    "category": "Hobs",
+    "category": "cooking",
+    "subcategory": "hobs",
     "brand": "Samsung",
     "image": "https://images.pexels.com/photos/5591647/pexels-photo-5591647.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -2800,7 +2882,8 @@ export const products = [
     "longDescription": "This premium hobs combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 3.5,
     "reviews": 274,
-    "category": "Hobs",
+    "category": "cooking",
+    "subcategory": "hobs",
     "brand": "LG",
     "image": "https://images.pexels.com/photos/4108278/pexels-photo-4108278.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -2834,7 +2917,8 @@ export const products = [
     "longDescription": "This premium hobs combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.2,
     "reviews": 210,
-    "category": "Hobs",
+    "category": "cooking",
+    "subcategory": "hobs",
     "brand": "Bosch",
     "image": "https://images.pexels.com/photos/4108719/pexels-photo-4108719.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -2868,7 +2952,8 @@ export const products = [
     "longDescription": "This premium hobs combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 3.8,
     "reviews": 496,
-    "category": "Hobs",
+    "category": "cooking",
+    "subcategory": "hobs",
     "brand": "Whirlpool",
     "image": "https://images.pexels.com/photos/5591595/pexels-photo-5591595.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -2902,7 +2987,8 @@ export const products = [
     "longDescription": "This premium hobs combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4,
     "reviews": 210,
-    "category": "Hobs",
+    "category": "cooking",
+    "subcategory": "hobs",
     "brand": "Siemens",
     "image": "https://images.pexels.com/photos/5591647/pexels-photo-5591647.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -2936,7 +3022,8 @@ export const products = [
     "longDescription": "This premium hobs combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 4.8,
     "reviews": 482,
-    "category": "Hobs",
+    "category": "cooking",
+    "subcategory": "hobs",
     "brand": "Miele",
     "image": "https://images.pexels.com/photos/4108278/pexels-photo-4108278.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -2970,7 +3057,8 @@ export const products = [
     "longDescription": "This premium hobs combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 3.9,
     "reviews": 461,
-    "category": "Hobs",
+    "category": "cooking",
+    "subcategory": "hobs",
     "brand": "Samsung",
     "image": "https://images.pexels.com/photos/4108719/pexels-photo-4108719.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -3004,7 +3092,8 @@ export const products = [
     "longDescription": "This premium hobs combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 3.9,
     "reviews": 445,
-    "category": "Hobs",
+    "category": "cooking",
+    "subcategory": "hobs",
     "brand": "LG",
     "image": "https://images.pexels.com/photos/5591595/pexels-photo-5591595.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [
@@ -3038,7 +3127,8 @@ export const products = [
     "longDescription": "This premium hobs combines cutting-edge technology with elegant design. Built with high-quality materials and backed by years of engineering expertise, it delivers exceptional performance while maintaining energy efficiency. The intuitive controls make operation simple, while advanced features ensure optimal results every time. Perfect for modern households seeking reliability and convenience.",
     "rating": 3.9,
     "reviews": 413,
-    "category": "Hobs",
+    "category": "cooking",
+    "subcategory": "hobs",
     "brand": "Bosch",
     "image": "https://images.pexels.com/photos/5591647/pexels-photo-5591647.jpeg?auto=compress&cs=tinysrgb&w=700&q=70",
     "images": [

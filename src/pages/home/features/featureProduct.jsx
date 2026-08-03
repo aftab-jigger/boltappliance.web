@@ -3,7 +3,7 @@
 import { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ChevronLeft, ChevronRight } from "@/assets/icons/icons";
-import { getCategorySlug } from "@/lib/data";
+import { getCategorySlugForProduct } from "@/lib/categories";
 import { useProducts } from "@/context/ProductsContext";
 import SectionHeader from "@/components/ui/section-header";
 import StarRating from "@/components/ui/star-rating";
@@ -14,7 +14,7 @@ const CARD_WIDTH = 280;
 const CARD_GAP = 16;
 
 function ProductCard({ product }) {
-  const categorySlug = getCategorySlug(product.category);
+  const categorySlug = getCategorySlugForProduct(product);
 
   return (
     <Link

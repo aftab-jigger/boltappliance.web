@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useRef, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import {
@@ -19,7 +19,10 @@ import {
 } from "@/assets/icons/icons";
 import { Button } from "@/components/ui/button";
 import ProductImageWithFallback from "@/components/ui/product-image-with-fallback";
-import { getCategoryBySlug, getCategorySlug } from "@/lib/data";
+import {
+  getCategoryTitleForProduct,
+  getCategorySlugForProduct,
+} from "@/lib/categories";
 import { useProducts } from "@/context/ProductsContext";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
@@ -599,30 +602,14 @@ function TabsSection({ product }) {
 
 export default function CategoryProductDetailPage() {
   const params = useParams();
-  const {
-    getProductById,
-    products,
-    isLoading: isProductsLoading,
-  } = useProducts();
-  const [product, setProduct] = useState(null);
+  const { getProductById, isLoading: isProductsLoading } = useProducts();
   const [quantity, setQuantity] = useState(1);
-  const [isLoading, setIsLoading] = useState(true);
-  const [categoryName, setCategoryName] = useState("");
 
-  useEffect(() => {
-    if (params.id && params.category) {
-      const foundProduct = getProductById(params.id);
-      const productCategories = [
-        ...new Set(products.map((item) => item.category).filter(Boolean)),
-      ];
-      const catName = getCategoryBySlug(params.category, productCategories);
-      setProduct(foundProduct);
-      setCategoryName(catName || params.category);
-      setIsLoading(false);
-    }
-  }, [params.id, params.category, getProductById, isProductsLoading, products]);
+  // Derive product directly during render instead of via an effect — avoids
+  // an unnecessary extra render pass and the "setState in effect" pitfall.
+  const product = isProductsLoading ? null : getProductById(params.id);
 
-  if (isLoading || isProductsLoading) {
+  if (isProductsLoading) {
     return (
       <div className="min-h-screen bg-background">
         <div className="container mx-auto px-4 py-20">
@@ -660,7 +647,8 @@ export default function CategoryProductDetailPage() {
       ? Math.round((1 - product.price / product.originalPrice) * 100)
       : 0;
 
-  const categorySlug = getCategorySlug(product.category);
+  const categorySlug = getCategorySlugForProduct(product);
+  const categoryName = getCategoryTitleForProduct(product);
 
   return (
     <div className="min-h-screen bg-background">
@@ -698,7 +686,7 @@ export default function CategoryProductDetailPage() {
               {/* Category & Brand */}
               <div className="flex items-center gap-3">
                 <span className="px-3 py-1 bg-teal-100 text-teal-700 text-xs font-medium rounded-full">
-                  {product.category}
+                  {categoryName}
                 </span>
                 <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-full">
                   {product.brand}
