@@ -6,7 +6,6 @@ import {
   ChevronLeft,
   ChevronRight,
   Share2,
-  X,
   SlidersHorizontal,
   Home,
 } from "@/assets/icons/icons";
@@ -23,10 +22,11 @@ import {
 } from "@/lib/categories";
 import { useProducts } from "@/context/ProductsContext";
 import {
-  buildCategoryFilterDefinitions,
-  createInitialCategoryFilters,
-  sanitizeCategoryFilters,
-} from "@/lib/productFilters";
+  DesktopFilterSidebar,
+  MobileFilterPanel,
+} from "@/components/products/FilterPanel";
+import { useProductFilters } from "@/hooks/useProductFilters";
+import { isFilterActive } from "@/lib/filters/commonFilters";
 
 // Product Card Component
 function ProductCard({ product }) {
@@ -187,155 +187,8 @@ function SubcategoryChips({ subcategories, activeSlug, onSelect }) {
   );
 }
 
-// Config-Driven Filter Component (Brand / Price)
-function FilterSection({ filterId, filterConfig, value, onChange }) {
-  if (filterConfig.type === "select") {
-    const options = filterConfig.options;
-    const isObjectOptions = typeof options[0] === "object";
-
-    return (
-      <div>
-        <h3 className="font-semibold text-foreground mb-3 text-sm">
-          {filterConfig.label}
-        </h3>
-        <div className="space-y-2">
-          {options.map((option, i) => {
-            const optionValue = isObjectOptions ? option.label : option;
-            const isSelected = isObjectOptions
-              ? value?.label === option.label
-              : value === option;
-
-            return (
-              <label
-                key={i}
-                className="flex items-center gap-3 cursor-pointer group"
-              >
-                <input
-                  type="radio"
-                  name={`filter-${filterId}`}
-                  checked={isSelected}
-                  onChange={() => onChange(option)}
-                  className="w-4 h-4 text-teal-500 border-gray-300 focus:ring-teal-500"
-                />
-                <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">
-                  {optionValue}
-                </span>
-              </label>
-            );
-          })}
-        </div>
-      </div>
-    );
-  }
-  return null;
-}
-
-// Desktop Sidebar Filter Component
-function DesktopFilterSidebar({
-  filterDefinitions,
-  filters,
-  setFilters,
-  onClear,
-  hasActiveFilters,
-}) {
-  return (
-    <div className="hidden lg:block w-64 flex-shrink-0">
-      <div className="sticky top-36 max-h-[calc(100vh-10rem)] overflow-y-auto bg-card rounded-2xl shadow-sm border">
-        <div className="p-5">
-          <h2 className="text-lg font-bold text-foreground mb-5">Filters</h2>
-
-          <div className="space-y-6">
-            {Object.keys(filterDefinitions).map((filterId) => (
-              <FilterSection
-                key={filterId}
-                filterId={filterId}
-                filterConfig={filterDefinitions[filterId]}
-                value={filters[filterId]}
-                onChange={(val) =>
-                  setFilters((prev) => ({ ...prev, [filterId]: val }))
-                }
-              />
-            ))}
-
-            {hasActiveFilters && (
-              <Button
-                variant="outline"
-                className="w-full border-teal-200 hover:bg-teal-50 hover:border-teal-300 text-teal-600 bg-transparent"
-                onClick={onClear}
-              >
-                <X className="w-4 h-4 mr-2" />
-                Clear Filters
-              </Button>
-            )}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// Mobile Filter Panel Component
-function MobileFilterPanel({
-  filterDefinitions,
-  filters,
-  setFilters,
-  isOpen,
-  onClose,
-  onClear,
-}) {
-  if (!isOpen) return null;
-
-  return (
-    <div className="fixed inset-0 bg-black/50 z-50 lg:hidden" onClick={onClose}>
-      <div
-        className="absolute right-0 top-0 bottom-0 w-[85%] max-w-80 bg-background p-5 shadow-xl overflow-y-auto"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-lg font-bold text-foreground">Filters</h2>
-          <button
-            onClick={onClose}
-            className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
-          >
-            <X className="w-5 h-5" />
-          </button>
-        </div>
-
-        <div className="space-y-6">
-          {Object.keys(filterDefinitions).map((filterId) => (
-            <FilterSection
-              key={filterId}
-              filterId={filterId}
-              filterConfig={filterDefinitions[filterId]}
-              value={filters[filterId]}
-              onChange={(val) =>
-                setFilters((prev) => ({ ...prev, [filterId]: val }))
-              }
-            />
-          ))}
-
-          <div className="flex gap-3 pt-4">
-            <Button
-              variant="outline"
-              className="flex-1 border-teal-200 hover:bg-teal-50 hover:border-teal-300 text-teal-600 bg-transparent"
-              onClick={onClear}
-            >
-              Clear
-            </Button>
-            <Button
-              className="flex-1 bg-gradient-to-r from-teal-500 to-cyan-500 hover:from-teal-600 hover:to-cyan-600 text-white"
-              onClick={onClose}
-            >
-              Apply
-            </Button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 // Pagination Component
+
 function Pagination({ currentPage, totalPages, onPageChange }) {
   const pages = [];
 
@@ -453,29 +306,26 @@ export default function MainCategoryPage({ categorySlug }) {
     );
   }, [categoryProducts, activeSubcategorySlug]);
 
-  const dynamicFilterDefinitions = useMemo(
-    () => buildCategoryFilterDefinitions(subcategoryFilteredProducts),
-    [subcategoryFilteredProducts],
-  );
+  // Reusable common filters (Brand / Price / Colour / Energy Rating /
+  // Guarantee), scoped to the products currently in view. All option lists and
+  // matching logic live in the shared hook, so no filter logic is duplicated
+  // here or on /products.
+  const {
+    definitions,
+    filters,
+    setFilter,
+    clearAll,
+    activeCount,
+    filteredProducts,
+  } = useProductFilters(subcategoryFilteredProducts);
 
-  const initialFilters = useMemo(
-    () =>
-      createInitialCategoryFilters(
-        { filters: { brand: true, price: true } },
-        dynamicFilterDefinitions,
-      ),
-    [dynamicFilterDefinitions],
-  );
-
-  const [filters, setFiltersState] = useState(() => initialFilters);
   const [currentPage, setCurrentPage] = useState(1);
   const [showMobileFilters, setShowMobileFilters] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
 
-  // Reset the page + sanitize filters whenever the active subcategory (or
-  // the set of available filter options) changes. Handled during render
-  // (React's documented "adjusting state when a prop changes" pattern)
+  // Reset the page whenever the active subcategory changes. Handled during
+  // render (React's documented "adjusting state when a prop changes" pattern)
   // instead of inside an effect, avoiding an extra cascading render pass.
   const [prevSubcategorySlug, setPrevSubcategorySlug] = useState(
     activeSubcategorySlug,
@@ -485,24 +335,18 @@ export default function MainCategoryPage({ categorySlug }) {
     setCurrentPage(1);
   }
 
-  const [prevFilterDefinitions, setPrevFilterDefinitions] = useState(
-    dynamicFilterDefinitions,
+  const handleFilterChange = useCallback(
+    (key, value) => {
+      setFilter(key, value);
+      setCurrentPage(1);
+    },
+    [setFilter],
   );
-  if (prevFilterDefinitions !== dynamicFilterDefinitions) {
-    setPrevFilterDefinitions(dynamicFilterDefinitions);
-    setFiltersState((prev) =>
-      sanitizeCategoryFilters(prev, dynamicFilterDefinitions),
-    );
-  }
 
-  const setFilters = useCallback((newFiltersOrUpdater) => {
-    if (typeof newFiltersOrUpdater === "function") {
-      setFiltersState((prev) => newFiltersOrUpdater(prev));
-    } else {
-      setFiltersState(newFiltersOrUpdater);
-    }
+  const clearFilters = useCallback(() => {
+    clearAll();
     setCurrentPage(1);
-  }, []);
+  }, [clearAll]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -519,29 +363,6 @@ export default function MainCategoryPage({ categorySlug }) {
     return () => observer.disconnect();
   }, []);
 
-  const filteredProducts = useMemo(
-    () =>
-      subcategoryFilteredProducts.filter((product) => {
-        if (
-          filters.brand &&
-          filters.brand !== "All" &&
-          product.brand !== filters.brand
-        ) {
-          return false;
-        }
-        if (filters.price && filters.price.label !== "All Prices") {
-          if (
-            product.price < filters.price.min ||
-            product.price > filters.price.max
-          ) {
-            return false;
-          }
-        }
-        return true;
-      }),
-    [subcategoryFilteredProducts, filters],
-  );
-
   const totalPages = Math.ceil(filteredProducts.length / PRODUCTS_PER_PAGE);
   const startIndex = (currentPage - 1) * PRODUCTS_PER_PAGE;
   const paginatedProducts = filteredProducts.slice(
@@ -549,24 +370,31 @@ export default function MainCategoryPage({ categorySlug }) {
     startIndex + PRODUCTS_PER_PAGE,
   );
 
-  const clearFilters = () => {
-    setFilters(initialFilters);
-    setCurrentPage(1);
-  };
+  const hasActiveFilters = activeCount > 0;
 
-  const hasActiveFilters = useMemo(
+  // Accordion sections for the shared filter panel: Brand, Price, Colour,
+  // Energy Rating and Guarantee — all produced from the shared definitions,
+  // so this page adds zero filter logic of its own.
+  const sections = useMemo(
     () =>
-      Object.keys(filters).some((key) => {
-        const def = dynamicFilterDefinitions[key];
-        if (!def) return false;
-        const defaultVal = def.defaultValue;
-        const currentVal = filters[key];
-        if (typeof defaultVal === "object") {
-          return currentVal?.label !== defaultVal.label;
-        }
-        return currentVal !== defaultVal;
+      definitions.map((definition) => {
+        const value = filters[definition.key];
+        const active = isFilterActive(definition, value);
+        return {
+          key: definition.key,
+          label: definition.label,
+          options: definition.options,
+          value,
+          onChange: (option) => handleFilterChange(definition.key, option),
+          isActive: active,
+          selectedLabel: active
+            ? definition.type === "range"
+              ? value.label
+              : value
+            : "",
+        };
       }),
-    [filters, dynamicFilterDefinitions],
+    [definitions, filters, handleFilterChange],
   );
 
   if (isLoading) {
@@ -639,14 +467,13 @@ export default function MainCategoryPage({ categorySlug }) {
         onSelect={setActiveSubcategory}
       />
 
-      {/* Mobile Filter Panel (Brand / Price) */}
+      {/* Mobile Filter Panel (shared accordion filters) */}
       <MobileFilterPanel
-        filterDefinitions={dynamicFilterDefinitions}
-        filters={filters}
-        setFilters={setFilters}
+        sections={sections}
+        activeCount={activeCount}
+        onClearAll={clearFilters}
         isOpen={showMobileFilters}
         onClose={() => setShowMobileFilters(false)}
-        onClear={clearFilters}
       />
 
       {/* Mobile Sticky Filter Bar */}
@@ -677,12 +504,13 @@ export default function MainCategoryPage({ categorySlug }) {
       <section ref={sectionRef} className="py-6 sm:py-10 relative">
         <div className="container mx-auto px-4">
           <div className="flex gap-8">
+            {/* Sticky offset kept at top-36 so the sidebar clears the
+                URL-synced subcategory chip bar above it. */}
             <DesktopFilterSidebar
-              filterDefinitions={dynamicFilterDefinitions}
-              filters={filters}
-              setFilters={setFilters}
-              onClear={clearFilters}
-              hasActiveFilters={hasActiveFilters}
+              sections={sections}
+              activeCount={activeCount}
+              onClearAll={clearFilters}
+              stickyClassName="top-36 max-h-[calc(100vh-10rem)]"
             />
 
             <div className="flex-1 min-w-0">

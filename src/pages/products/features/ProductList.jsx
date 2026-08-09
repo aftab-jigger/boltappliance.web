@@ -6,18 +6,29 @@ import {
   ChevronLeft,
   ChevronRight,
   Share2,
-  X,
   SlidersHorizontal,
 } from "@/assets/icons/icons";
 import { Button } from "@/components/ui/button";
 import StarRating from "@/components/ui/star-rating";
 import ProductImageWithFallback from "@/components/ui/product-image-with-fallback";
-import { getCategorySlugForProduct } from "@/lib/categories";
+import {
+  getCategorySlugForProduct,
+  productMatchesCategory,
+  productMatchesSubcategory,
+} from "@/lib/categories";
+
 import { useProducts } from "@/context/ProductsContext";
 import {
-  createDefaultProductFilters,
-  sanitizeProductFilters,
-} from "@/lib/productFilters";
+  DesktopFilterSidebar,
+  MobileFilterPanel,
+} from "@/components/products/FilterPanel";
+import { useProductFilters } from "@/hooks/useProductFilters";
+import {
+  ALL_VALUE,
+  getCategoryOptions,
+  getSubcategoryOptions,
+  isFilterActive,
+} from "@/lib/filters/commonFilters";
 
 // Product Card Component
 function ProductCard({ product }) {
@@ -153,311 +164,6 @@ function ProductCard({ product }) {
   );
 }
 
-// Dropdown Filter Component
-// function FilterDropdown({ label, value, options, onChange, isOpen, onToggle }) {
-//   const dropdownRef = useRef(null)
-
-//   useEffect(() => {
-//     const handleClickOutside = (event) => {
-//       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-//         if (isOpen) onToggle()
-//       }
-//     }
-//     document.addEventListener("mousedown", handleClickOutside)
-//     return () => document.removeEventListener("mousedown", handleClickOutside)
-//   }, [isOpen, onToggle])
-
-//   return (
-//     <div ref={dropdownRef} className="relative">
-//       <button
-//         onClick={onToggle}
-//         className="flex items-center justify-between w-full px-4 py-2.5 bg-white border border-teal-200 rounded-xl text-sm font-medium text-foreground hover:border-teal-400 hover:bg-teal-50/50 transition-all duration-200"
-//       >
-//         <span className="flex items-center gap-2">
-//           <span className="text-muted-foreground">{label}:</span>
-//           <span className="text-teal-600">{value}</span>
-//         </span>
-//         <ChevronDown
-//           className={`w-4 h-4 text-teal-500 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
-//         />
-//       </button>
-
-//       {isOpen && (
-//         <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-teal-100 rounded-xl shadow-lg z-50 overflow-hidden">
-//           <div className="max-h-60 overflow-y-auto py-1">
-//             {options.map((option, i) => {
-//               const optionValue = typeof option === "string" ? option : option.label
-//               const isSelected = value === optionValue
-//               return (
-//                 <button
-//                   key={i}
-//                   onClick={() => {
-//                     onChange(option)
-//                     onToggle()
-//                   }}
-//                   className={`w-full px-4 py-2.5 text-left text-sm transition-colors ${
-//                     isSelected
-//                       ? "bg-gradient-to-r from-teal-500 to-cyan-500 text-white"
-//                       : "text-foreground hover:bg-teal-50"
-//                   }`}
-//                 >
-//                   {optionValue}
-//                 </button>
-//               )
-//             })}
-//           </div>
-//         </div>
-//       )}
-//     </div>
-//   )
-// }
-
-// Mobile Filter Panel Component
-function MobileFilterPanel({
-  filters,
-  setFilters,
-  filterOptions,
-  isOpen,
-  onClose,
-}) {
-  const { categories, brands, priceRanges } = filterOptions;
-
-  if (!isOpen) return null;
-
-  return (
-    <div className="fixed inset-0 bg-black/50 z-50 lg:hidden" onClick={onClose}>
-      <div
-        className="absolute right-0 top-0 bottom-0 w-[85%] max-w-80 bg-background p-5 shadow-xl overflow-y-auto"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-lg font-bold text-foreground">Filters</h2>
-          <button
-            onClick={onClose}
-            className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
-          >
-            <X className="w-5 h-5" />
-          </button>
-        </div>
-
-        <div className="space-y-6">
-          {/* Category Filter */}
-          <div>
-            <h3 className="font-semibold text-foreground mb-3">Category</h3>
-            <div className="space-y-2">
-              {categories.map((category) => (
-                <label
-                  key={category.value}
-                  className="flex items-center gap-3 cursor-pointer group"
-                >
-                  <input
-                    type="radio"
-                    name="category"
-                    checked={filters.category === category.value}
-                    onChange={() =>
-                      setFilters({ ...filters, category: category.value })
-                    }
-                    className="w-4 h-4 text-teal-500 border-gray-300 focus:ring-teal-500"
-                  />
-                  <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">
-                    {category.label}
-                  </span>
-                </label>
-              ))}
-            </div>
-          </div>
-
-          {/* Brand Filter */}
-          <div>
-            <h3 className="font-semibold text-foreground mb-3">Brand</h3>
-            <div className="space-y-2">
-              {brands.map((brand) => (
-                <label
-                  key={brand}
-                  className="flex items-center gap-3 cursor-pointer group"
-                >
-                  <input
-                    type="radio"
-                    name="brand"
-                    checked={filters.brand === brand}
-                    onChange={() => setFilters({ ...filters, brand })}
-                    className="w-4 h-4 text-teal-500 border-gray-300 focus:ring-teal-500"
-                  />
-                  <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">
-                    {brand}
-                  </span>
-                </label>
-              ))}
-            </div>
-          </div>
-
-          {/* Price Filter */}
-          <div>
-            <h3 className="font-semibold text-foreground mb-3">Price Range</h3>
-            <div className="space-y-2">
-              {priceRanges.map((range, i) => (
-                <label
-                  key={i}
-                  className="flex items-center gap-3 cursor-pointer group"
-                >
-                  <input
-                    type="radio"
-                    name="price"
-                    checked={filters.priceRange.label === range.label}
-                    onChange={() =>
-                      setFilters({ ...filters, priceRange: range })
-                    }
-                    className="w-4 h-4 text-teal-500 border-gray-300 focus:ring-teal-500"
-                  />
-                  <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">
-                    {range.label}
-                  </span>
-                </label>
-              ))}
-            </div>
-          </div>
-
-          {/* Clear & Apply Buttons */}
-          <div className="flex gap-3 pt-4">
-            <Button
-              variant="outline"
-              className="flex-1 border-teal-200 hover:bg-teal-50 hover:border-teal-300 text-teal-600 bg-transparent"
-              onClick={() =>
-                setFilters(createDefaultProductFilters(filterOptions))
-              }
-            >
-              Clear
-            </Button>
-            <Button
-              className="flex-1 bg-gradient-to-r from-teal-500 to-cyan-500 hover:from-teal-600 hover:to-cyan-600 text-white"
-              onClick={onClose}
-            >
-              Apply
-            </Button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// Desktop Sidebar Filter Component
-function DesktopFilterSidebar({ filters, setFilters, filterOptions }) {
-  const { categories, brands, priceRanges } = filterOptions;
-  const hasActiveFilters =
-    filters.category !== "All" ||
-    filters.brand !== "All" ||
-    filters.priceRange.label !== "All Prices";
-
-  return (
-    <div className="hidden lg:block w-64 flex-shrink-0">
-      <div className="sticky top-20 max-h-[calc(100vh-6rem)] overflow-y-auto bg-card rounded-2xl shadow-sm border">
-        <div className="p-5">
-          <h2 className="text-lg font-bold text-foreground mb-5">Filters</h2>
-
-          <div className="space-y-6">
-            {/* Category Filter */}
-            <div>
-              <h3 className="font-semibold text-foreground mb-3 text-sm">
-                Category
-              </h3>
-              <div className="space-y-2">
-                {categories.map((category) => (
-                  <label
-                    key={category.value}
-                    className="flex items-center gap-3 cursor-pointer group"
-                  >
-                    <input
-                      type="radio"
-                      name="category-desktop"
-                      checked={filters.category === category.value}
-                      onChange={() =>
-                        setFilters({ ...filters, category: category.value })
-                      }
-                      className="w-4 h-4 text-teal-500 border-gray-300 focus:ring-teal-500"
-                    />
-                    <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">
-                      {category.label}
-                    </span>
-                  </label>
-                ))}
-              </div>
-            </div>
-
-            {/* Brand Filter */}
-            <div>
-              <h3 className="font-semibold text-foreground mb-3 text-sm">
-                Brand
-              </h3>
-              <div className="space-y-2">
-                {brands.map((brand) => (
-                  <label
-                    key={brand}
-                    className="flex items-center gap-3 cursor-pointer group"
-                  >
-                    <input
-                      type="radio"
-                      name="brand-desktop"
-                      checked={filters.brand === brand}
-                      onChange={() => setFilters({ ...filters, brand })}
-                      className="w-4 h-4 text-teal-500 border-gray-300 focus:ring-teal-500"
-                    />
-                    <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">
-                      {brand}
-                    </span>
-                  </label>
-                ))}
-              </div>
-            </div>
-
-            {/* Price Filter */}
-            <div>
-              <h3 className="font-semibold text-foreground mb-3 text-sm">
-                Price Range
-              </h3>
-              <div className="space-y-2">
-                {priceRanges.map((range, i) => (
-                  <label
-                    key={i}
-                    className="flex items-center gap-3 cursor-pointer group"
-                  >
-                    <input
-                      type="radio"
-                      name="price-desktop"
-                      checked={filters.priceRange.label === range.label}
-                      onChange={() =>
-                        setFilters({ ...filters, priceRange: range })
-                      }
-                      className="w-4 h-4 text-teal-500 border-gray-300 focus:ring-teal-500"
-                    />
-                    <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">
-                      {range.label}
-                    </span>
-                  </label>
-                ))}
-              </div>
-            </div>
-
-            {/* Clear Filters */}
-            {hasActiveFilters && (
-              <Button
-                variant="outline"
-                className="w-full border-teal-200 hover:bg-teal-50 hover:border-teal-300 text-teal-600 bg-transparent"
-                onClick={() =>
-                  setFilters(createDefaultProductFilters(filterOptions))
-                }
-              >
-                <X className="w-4 h-4 mr-2" />
-                Clear Filters
-              </Button>
-            )}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 // Pagination Component
 function Pagination({ currentPage, totalPages, onPageChange }) {
   const pages = [];
@@ -523,62 +229,176 @@ function Pagination({ currentPage, totalPages, onPageChange }) {
   );
 }
 
+const PRODUCTS_PER_PAGE = 15;
+
 const ProductList = () => {
-  const { products, filterOptions } = useProducts();
+  const { products } = useProducts();
   const [currentPage, setCurrentPage] = useState(1);
-  const [filters, setFilters] = useState(() =>
-    createDefaultProductFilters(filterOptions),
-  );
   const [showMobileFilters, setShowMobileFilters] = useState(false);
+
+  // Category / Subcategory are navigation-level concerns on /products, so they
+  // live in local component state (not in `useProductFilters`, which owns the
+  // reusable common filters shared with the category pages).
+  const [category, setCategory] = useState(ALL_VALUE);
+  const [subcategory, setSubcategory] = useState(ALL_VALUE);
 
   const [isVisible] = useState(true);
   const sectionRef = useRef(null);
 
-  const productsPerPage = 15;
+  // Options are always derived from live data, never hardcoded.
+  const categoryOptions = useMemo(
+    () => getCategoryOptions(products),
+    [products],
+  );
+  const subcategoryOptions = useMemo(
+    () => getSubcategoryOptions(category, products),
+    [category, products],
+  );
 
-  // Sanitize filters whenever the available filter options change, without
-  // calling setState synchronously inside an effect (avoids a cascading
-  // extra render). This mirrors React's documented "adjusting state when a
-  // prop changes" pattern, applied during render instead of in useEffect.
-  const [prevFilterOptions, setPrevFilterOptions] = useState(filterOptions);
-  if (prevFilterOptions !== filterOptions) {
-    setPrevFilterOptions(filterOptions);
-    setFilters((prev) => sanitizeProductFilters(prev, filterOptions));
+  // If the data changes and the selected category/subcategory disappears,
+  // fall back to "All". Adjusted during render (React's "adjusting state when
+  // props change" pattern) to avoid a cascading extra render from an effect.
+  const categoryStillValid = categoryOptions.some(
+    (option) => option.value === category,
+  );
+  if (!categoryStillValid) {
+    setCategory(ALL_VALUE);
+    setSubcategory(ALL_VALUE);
   }
 
-  // Wrapper function to set filters and reset page
-  const handleSetFilters = useCallback((newFilters) => {
-    setFilters(newFilters);
+  const subcategoryStillValid =
+    subcategory === ALL_VALUE ||
+    subcategoryOptions.some((option) => option.value === subcategory);
+  if (!subcategoryStillValid) {
+    setSubcategory(ALL_VALUE);
+  }
+
+  // Narrow by category/subcategory FIRST so the common filter options only
+  // ever offer values that exist within the current navigation scope.
+  const scopedProducts = useMemo(() => {
+    let scoped = products;
+    if (category !== ALL_VALUE) {
+      scoped = scoped.filter((product) =>
+        productMatchesCategory(product, category),
+      );
+    }
+    if (subcategory !== ALL_VALUE) {
+      scoped = scoped.filter((product) =>
+        productMatchesSubcategory(product, subcategory),
+      );
+    }
+    return scoped;
+  }, [products, category, subcategory]);
+
+  const {
+    definitions,
+    filters,
+    setFilter,
+    clearAll,
+    activeCount,
+    filteredProducts,
+  } = useProductFilters(scopedProducts);
+
+  const handleCategoryChange = useCallback((option) => {
+    setCategory(option.value);
+    setSubcategory(ALL_VALUE);
     setCurrentPage(1);
   }, []);
 
-  const hasActiveFilters = useMemo(
-    () =>
-      filters.category !== "All" ||
-      filters.brand !== "All" ||
-      filters.priceRange.label !== "All Prices",
-    [filters],
+  const handleSubcategoryChange = useCallback((option) => {
+    setSubcategory(option.value);
+    setCurrentPage(1);
+  }, []);
+
+  const handleFilterChange = useCallback(
+    (key, value) => {
+      setFilter(key, value);
+      setCurrentPage(1);
+    },
+    [setFilter],
   );
 
-  // Filter products
-  const filteredProducts = useMemo(
-    () =>
-      products.filter((product) => {
-        if (filters.category !== "All" && product.category !== filters.category)
-          return false;
-        if (filters.brand !== "All" && product.brand !== filters.brand)
-          return false;
-        if (
-          product.price < filters.priceRange.min ||
-          product.price > filters.priceRange.max
-        )
-          return false;
-        return true;
-      }),
-    [filters, products],
-  );
+  const handleClearAll = useCallback(() => {
+    setCategory(ALL_VALUE);
+    setSubcategory(ALL_VALUE);
+    clearAll();
+    setCurrentPage(1);
+  }, [clearAll]);
+
+  // Category + dependent Subcategory + the reusable common filter sections,
+  // in a single list consumed by both the desktop sidebar and mobile drawer.
+  const sections = useMemo(() => {
+    const navSections = [];
+
+    if (categoryOptions.length > 1) {
+      const selectedCategory = categoryOptions.find(
+        (option) => option.value === category,
+      );
+      navSections.push({
+        key: "category",
+        label: "Category",
+        options: categoryOptions,
+        value: category,
+        onChange: handleCategoryChange,
+        isActive: category !== ALL_VALUE,
+        selectedLabel: selectedCategory?.label,
+      });
+    }
+
+    // Dependent: only rendered once a category with real subcategories is set.
+    if (subcategoryOptions.length > 1) {
+      const selectedSubcategory = subcategoryOptions.find(
+        (option) => option.value === subcategory,
+      );
+      navSections.push({
+        key: "subcategory",
+        label: "Subcategory",
+        options: subcategoryOptions,
+        value: subcategory,
+        onChange: handleSubcategoryChange,
+        isActive: subcategory !== ALL_VALUE,
+        selectedLabel: selectedSubcategory?.label,
+      });
+    }
+
+    const commonSections = definitions.map((definition) => {
+      const value = filters[definition.key];
+      const active = isFilterActive(definition, value);
+      return {
+        key: definition.key,
+        label: definition.label,
+        options: definition.options,
+        value,
+        onChange: (option) => handleFilterChange(definition.key, option),
+        isActive: active,
+        selectedLabel: active
+          ? definition.type === "range"
+            ? value.label
+            : value
+          : "",
+      };
+    });
+
+    return [...navSections, ...commonSections];
+  }, [
+    categoryOptions,
+    category,
+    handleCategoryChange,
+    subcategoryOptions,
+    subcategory,
+    handleSubcategoryChange,
+    definitions,
+    filters,
+    handleFilterChange,
+  ]);
+
+  const navActiveCount =
+    (category !== ALL_VALUE ? 1 : 0) + (subcategory !== ALL_VALUE ? 1 : 0);
+  const totalActiveCount = navActiveCount + activeCount;
+  const hasActiveFilters = totalActiveCount > 0;
 
   // Paginate
+  const productsPerPage = PRODUCTS_PER_PAGE;
   const totalPages = useMemo(
     () => Math.ceil(filteredProducts.length / productsPerPage),
     [filteredProducts.length, productsPerPage],
@@ -623,9 +443,9 @@ const ProductList = () => {
 
       {/* Mobile Filter Panel */}
       <MobileFilterPanel
-        filters={filters}
-        setFilters={handleSetFilters}
-        filterOptions={filterOptions}
+        sections={sections}
+        activeCount={totalActiveCount}
+        onClearAll={handleClearAll}
         isOpen={showMobileFilters}
         onClose={() => setShowMobileFilters(false)}
       />
@@ -660,9 +480,9 @@ const ProductList = () => {
           <div className="flex gap-8">
             {/* Desktop Sidebar Filter */}
             <DesktopFilterSidebar
-              filters={filters}
-              setFilters={handleSetFilters}
-              filterOptions={filterOptions}
+              sections={sections}
+              activeCount={totalActiveCount}
+              onClearAll={handleClearAll}
             />
 
             {/* Products Grid */}
@@ -713,17 +533,7 @@ const ProductList = () => {
                   </p>
                   <Button
                     className="mt-4 bg-gradient-to-r from-teal-500 to-cyan-500 hover:from-teal-600 hover:to-cyan-600 text-white"
-                    onClick={() =>
-                      handleSetFilters({
-                        category: "All",
-                        brand: "All",
-                        priceRange: {
-                          label: "All Prices",
-                          min: 0,
-                          max: Infinity,
-                        },
-                      })
-                    }
+                    onClick={handleClearAll}
                   >
                     Clear Filters
                   </Button>

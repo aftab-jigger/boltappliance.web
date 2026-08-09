@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  
+  <path d="M32 4 L56.78 18 V46 L32 60 L7.22 46 V18 Z" stroke="oklch(70.4% 0.14 182.503)" stroke-width="4" fill="none" stroke-linejoin="round"></path>
+  <circle cx="32" cy="32" r="15" fill="none" stroke="oklch(70.4% 0.14 182.503)" stroke-width="4"></circle>
+  <path class="spokes" d="M32 21 L32 17 M32 47 L32 43 M43 32 L47 32 M17 32 L21 32 M39.8 24.2 L42.6 21.4 M21.4 42.6 L24.2 39.8 M39.8 39.8 L42.6 42.6 M21.4 21.4 L24.2 24.2" stroke="oklch(70.4% 0.14 182.503)" stroke-width="3.4" stroke-linecap="round"></path>
+</svg>
