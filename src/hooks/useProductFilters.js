@@ -1,11 +1,15 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo } from "react";
 import {
   buildFilterDefinitions,
-  createDefaultFilters,
   isFilterActive,
   productMatchesFilter,
-  sanitizeFilters,
 } from "@/lib/filters/commonFilters";
+import {
+  clearFilterParams,
+  readFiltersFromParams,
+  writeFilterToParams,
+} from "@/lib/filters/filterParams";
+import { useListingParams } from "@/hooks/useListingParams";
 
 /**
  * Single source of truth for common-filter state, shared by the all-products
@@ -15,6 +19,14 @@ import {
  *
  * Filter *options* are always derived from `products`, so the available
  * choices shrink/grow with the live data and never contain hardcoded values.
+ *
+ * The selected *values* live in the listing route's search params rather than
+ * in component state. The listing URL therefore fully describes what the user
+ * is looking at, which is what lets browser Back from a product detail page
+ * restore the exact listing view (page number and filters included) instead of
+ * remounting the listing with defaults. Values that are no longer selectable
+ * (data changed, subcategory switched, hand-edited URL) are ignored on read,
+ * which replaces the previous `sanitizeFilters` pass at no extra cost.
  *
  * @param {Array<object>} products Products the filters should operate on
  * @returns {{
@@ -28,67 +40,62 @@ import {
  * }}
  */
 export function useProductFilters(products) {
+  const { searchParams, updateParams } = useListingParams();
+
   const definitions = useMemo(
     () => buildFilterDefinitions(products),
     [products],
   );
 
-  const [filters, setFilters] = useState(() =>
-    createDefaultFilters(definitions),
+  const filters = useMemo(
+    () => readFiltersFromParams(searchParams, definitions),
+    [searchParams, definitions],
   );
 
-  // Re-validate selections whenever the available definitions/options change
-  // (new data loaded, subcategory switched, ...). Done during render — React's
-  // documented "adjusting state when props change" pattern — to avoid an extra
-  // cascading render from useEffect.
-  const [prevDefinitions, setPrevDefinitions] = useState(definitions);
-  if (prevDefinitions !== definitions) {
-    setPrevDefinitions(definitions);
-    setFilters((prev) => sanitizeFilters(prev, definitions));
-  }
-
-  const safeFilters = useMemo(
-    () => sanitizeFilters(filters, definitions),
-    [filters, definitions],
+  const setFilter = useCallback(
+    (key, value) => {
+      const definition = definitions.find((item) => item.key === key);
+      if (!definition) return;
+      // Changing a filter changes the result set, so pagination resets within
+      // the same navigation — a separate page update would be overwritten.
+      updateParams((params) => writeFilterToParams(params, definition, value), {
+        resetPage: true,
+      });
+    },
+    [definitions, updateParams],
   );
-
-  const setFilter = useCallback((key, value) => {
-    setFilters((prev) => ({ ...prev, [key]: value }));
-  }, []);
 
   const clearAll = useCallback(() => {
-    setFilters(createDefaultFilters(definitions));
-  }, [definitions]);
+    updateParams((params) => clearFilterParams(params, definitions), {
+      resetPage: true,
+    });
+  }, [definitions, updateParams]);
 
   const activeCount = useMemo(
     () =>
       definitions.reduce(
         (count, definition) =>
-          isFilterActive(definition, safeFilters[definition.key])
+          isFilterActive(definition, filters[definition.key])
             ? count + 1
             : count,
         0,
       ),
-    [definitions, safeFilters],
+    [definitions, filters],
   );
 
   const filteredProducts = useMemo(
     () =>
       (products || []).filter((product) =>
         definitions.every((definition) =>
-          productMatchesFilter(
-            definition,
-            safeFilters[definition.key],
-            product,
-          ),
+          productMatchesFilter(definition, filters[definition.key], product),
         ),
       ),
-    [products, definitions, safeFilters],
+    [products, definitions, filters],
   );
 
   return {
     definitions,
-    filters: safeFilters,
+    filters,
     setFilter,
     clearAll,
     activeCount,

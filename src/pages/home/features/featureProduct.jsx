@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ChevronLeft, ChevronRight } from "@/assets/icons/icons";
 import { getCategorySlugForProduct } from "@/lib/categories";
 import { useProducts } from "@/context/ProductsContext";
@@ -9,16 +9,22 @@ import SectionHeader from "@/components/ui/section-header";
 import StarRating from "@/components/ui/star-rating";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 import ProductImageWithFallback from "@/components/ui/product-image-with-fallback";
+import { buildListingState } from "@/lib/listingNavigation";
 
 const CARD_WIDTH = 280;
 const CARD_GAP = 16;
 
 function ProductCard({ product }) {
   const categorySlug = getCategorySlugForProduct(product);
+  const location = useLocation();
 
   return (
     <Link
       to={`/products/${categorySlug}/${product.id}`}
+      // Homepage isn't a paginated listing, but passing the originating URL
+      // keeps the detail page's back link consistent everywhere a product can
+      // be opened from.
+      state={buildListingState(location)}
       className="group flex-none snap-start snap-always"
       style={{
         width: `min(100%, ${CARD_WIDTH}px)`,

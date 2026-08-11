@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   ArrowRight,
   ChevronDown,
@@ -27,15 +27,23 @@ import {
 } from "@/components/products/FilterPanel";
 import { useProductFilters } from "@/hooks/useProductFilters";
 import { isFilterActive } from "@/lib/filters/commonFilters";
+import { SUBCATEGORY_PARAM } from "@/lib/filters/filterParams";
+import { useListingParams } from "@/hooks/useListingParams";
+import { useListingPagination } from "@/hooks/useListingPagination";
+import { buildListingState } from "@/lib/listingNavigation";
 
 // Product Card Component
 function ProductCard({ product }) {
   const [showFeatures, setShowFeatures] = useState(false);
   const categorySlug = getCategorySlugForProduct(product);
+  const location = useLocation();
   const productDetailPath = `/products/${categorySlug}/${product.id}`;
+  // Remember the listing URL we came from (page number, subcategory, filters)
+  // so the detail page's back link can return to it exactly.
+  const listingState = buildListingState(location);
 
   return (
-    <Link to={productDetailPath} className="block">
+    <Link to={productDetailPath} state={listingState} className="block">
       <div className="group relative bg-card rounded-xl sm:rounded-2xl shadow-sm border hover:shadow-xl transition-all duration-300 hover:-translate-y-1 sm:hover:-translate-y-2 overflow-hidden cursor-pointer">
         <div className="absolute inset-0 bg-gradient-to-br from-teal-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
@@ -265,7 +273,7 @@ const PRODUCTS_PER_PAGE = 12;
  */
 export default function MainCategoryPage({ categorySlug }) {
   const { products, isLoading } = useProducts();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const { searchParams, updateParams } = useListingParams();
 
   const config = useMemo(() => getCategoryConfig(categorySlug), [categorySlug]);
 
@@ -282,21 +290,28 @@ export default function MainCategoryPage({ categorySlug }) {
     [categorySlug, products],
   );
 
-  const activeSubcategorySlug = normalizeSlug(searchParams.get("subcategory"));
+  const activeSubcategorySlug = normalizeSlug(
+    searchParams.get(SUBCATEGORY_PARAM),
+  );
 
   const setActiveSubcategory = useCallback(
     (slug) => {
-      setSearchParams((prev) => {
-        const next = new URLSearchParams(prev);
-        if (slug) {
-          next.set("subcategory", slug);
-        } else {
-          next.delete("subcategory");
-        }
-        return next;
-      });
+      // Switching subcategory changes the result set, so pagination resets in
+      // the same navigation (a separate page update would be overwritten).
+      // `replace: false` keeps the pre-existing behaviour of the chip bar,
+      // which pushed a history entry per subcategory selection.
+      updateParams(
+        (params) => {
+          if (slug) {
+            params.set(SUBCATEGORY_PARAM, slug);
+          } else {
+            params.delete(SUBCATEGORY_PARAM);
+          }
+        },
+        { resetPage: true, replace: false },
+      );
     },
-    [setSearchParams],
+    [updateParams],
   );
 
   const subcategoryFilteredProducts = useMemo(() => {
@@ -319,34 +334,39 @@ export default function MainCategoryPage({ categorySlug }) {
     filteredProducts,
   } = useProductFilters(subcategoryFilteredProducts);
 
-  const [currentPage, setCurrentPage] = useState(1);
   const [showMobileFilters, setShowMobileFilters] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
 
-  // Reset the page whenever the active subcategory changes. Handled during
-  // render (React's documented "adjusting state when a prop changes" pattern)
-  // instead of inside an effect, avoiding an extra cascading render pass.
-  const [prevSubcategorySlug, setPrevSubcategorySlug] = useState(
-    activeSubcategorySlug,
-  );
-  if (prevSubcategorySlug !== activeSubcategorySlug) {
-    setPrevSubcategorySlug(activeSubcategorySlug);
-    setCurrentPage(1);
-  }
+  // `setFilter` / `clearAll` write to the URL and already reset pagination
+  // within the same navigation, as does `setActiveSubcategory` above — so no
+  // separate page-reset bookkeeping is needed here any more.
+  const handleFilterChange = setFilter;
+  const clearFilters = clearAll;
 
-  const handleFilterChange = useCallback(
-    (key, value) => {
-      setFilter(key, value);
-      setCurrentPage(1);
-    },
-    [setFilter],
-  );
+  // "No products found" resets the subcategory as well as the filters. Both
+  // live in the same search params, so they're cleared in one navigation.
+  const clearFiltersAndSubcategory = useCallback(() => {
+    updateParams(
+      (params) => {
+        params.delete(SUBCATEGORY_PARAM);
+        definitions.forEach((definition) => params.delete(definition.key));
+      },
+      { resetPage: true },
+    );
+  }, [updateParams, definitions]);
 
-  const clearFilters = useCallback(() => {
-    clearAll();
-    setCurrentPage(1);
-  }, [clearAll]);
+  const totalPages = Math.ceil(filteredProducts.length / PRODUCTS_PER_PAGE);
+
+  // Pagination changes (page number / Next / Previous) bring the products
+  // grid back into view instead of leaving the viewport wherever it was
+  // scrolled to on the previous page (e.g. resting on the old pagination
+  // controls). Filter/subcategory resets above intentionally don't scroll,
+  // since the user is already looking at that part of the page.
+  const { currentPage, handlePageChange } = useListingPagination(
+    totalPages,
+    sectionRef,
+  );
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -363,7 +383,6 @@ export default function MainCategoryPage({ categorySlug }) {
     return () => observer.disconnect();
   }, []);
 
-  const totalPages = Math.ceil(filteredProducts.length / PRODUCTS_PER_PAGE);
   const startIndex = (currentPage - 1) * PRODUCTS_PER_PAGE;
   const paginatedProducts = filteredProducts.slice(
     startIndex,
@@ -547,7 +566,7 @@ export default function MainCategoryPage({ categorySlug }) {
                     <Pagination
                       currentPage={currentPage}
                       totalPages={totalPages}
-                      onPageChange={setCurrentPage}
+                      onPageChange={handlePageChange}
                     />
                   )}
                 </>
@@ -558,10 +577,7 @@ export default function MainCategoryPage({ categorySlug }) {
                   </p>
                   <Button
                     className="mt-4 bg-gradient-to-r from-teal-500 to-cyan-500 hover:from-teal-600 hover:to-cyan-600 text-white"
-                    onClick={() => {
-                      clearFilters();
-                      setActiveSubcategory("");
-                    }}
+                    onClick={clearFiltersAndSubcategory}
                   >
                     Clear Filters
                   </Button>

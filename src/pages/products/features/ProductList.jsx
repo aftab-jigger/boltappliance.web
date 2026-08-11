@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback, useMemo } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   ArrowRight,
   ChevronDown,
@@ -29,17 +29,28 @@ import {
   getSubcategoryOptions,
   isFilterActive,
 } from "@/lib/filters/commonFilters";
+import {
+  CATEGORY_PARAM,
+  SUBCATEGORY_PARAM,
+} from "@/lib/filters/filterParams";
+import { useListingParams } from "@/hooks/useListingParams";
+import { useListingPagination } from "@/hooks/useListingPagination";
+import { buildListingState } from "@/lib/listingNavigation";
 
 // Product Card Component
 function ProductCard({ product }) {
   const [showFeatures, setShowFeatures] = useState(false);
   const categorySlug = getCategorySlugForProduct(product);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const productDetailPath = `/products/${categorySlug}/${product.id}`;
+  // Remember the listing URL we came from (page number, filters, category,
+  // subcategory) so the detail page's back link can return to it exactly.
+  const listingState = buildListingState(location);
 
   return (
-    <Link to={productDetailPath} className="block">
+    <Link to={productDetailPath} state={listingState} className="block">
       <div className="group relative bg-card rounded-xl sm:rounded-2xl shadow-sm border hover:shadow-xl transition-all duration-300 hover:-translate-y-1 sm:hover:-translate-y-2 overflow-hidden">
         {/* Background gradient on hover */}
         <div className="absolute inset-0 bg-gradient-to-br from-teal-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -142,7 +153,7 @@ function ProductCard({ product }) {
                 onClick={(e) => {
                   e.preventDefault();
                   e.stopPropagation();
-                  navigate(productDetailPath);
+                  navigate(productDetailPath, { state: listingState });
                 }}
               >
                 <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 mr-1.5 sm:mr-2" />
@@ -233,14 +244,14 @@ const PRODUCTS_PER_PAGE = 15;
 
 const ProductList = () => {
   const { products } = useProducts();
-  const [currentPage, setCurrentPage] = useState(1);
   const [showMobileFilters, setShowMobileFilters] = useState(false);
 
   // Category / Subcategory are navigation-level concerns on /products, so they
-  // live in local component state (not in `useProductFilters`, which owns the
-  // reusable common filters shared with the category pages).
-  const [category, setCategory] = useState(ALL_VALUE);
-  const [subcategory, setSubcategory] = useState(ALL_VALUE);
+  // are handled here rather than in `useProductFilters` (which owns the
+  // reusable common filters shared with the category pages). Like the page
+  // number and the common filters, they live in the URL so the listing entry
+  // in history fully describes the view and can be restored on Back.
+  const { searchParams, updateParams } = useListingParams();
 
   const [isVisible] = useState(true);
   const sectionRef = useRef(null);
@@ -250,28 +261,26 @@ const ProductList = () => {
     () => getCategoryOptions(products),
     [products],
   );
+
+  const rawCategory = searchParams.get(CATEGORY_PARAM) || ALL_VALUE;
+  // An unknown/stale category in the URL falls back to "All" instead of
+  // showing an empty grid (e.g. a shared link to a category that has no
+  // products any more).
+  const category = categoryOptions.some((option) => option.value === rawCategory)
+    ? rawCategory
+    : ALL_VALUE;
+
   const subcategoryOptions = useMemo(
     () => getSubcategoryOptions(category, products),
     [category, products],
   );
 
-  // If the data changes and the selected category/subcategory disappears,
-  // fall back to "All". Adjusted during render (React's "adjusting state when
-  // props change" pattern) to avoid a cascading extra render from an effect.
-  const categoryStillValid = categoryOptions.some(
-    (option) => option.value === category,
-  );
-  if (!categoryStillValid) {
-    setCategory(ALL_VALUE);
-    setSubcategory(ALL_VALUE);
-  }
-
-  const subcategoryStillValid =
-    subcategory === ALL_VALUE ||
-    subcategoryOptions.some((option) => option.value === subcategory);
-  if (!subcategoryStillValid) {
-    setSubcategory(ALL_VALUE);
-  }
+  const rawSubcategory = searchParams.get(SUBCATEGORY_PARAM) || ALL_VALUE;
+  const subcategory = subcategoryOptions.some(
+    (option) => option.value === rawSubcategory,
+  )
+    ? rawSubcategory
+    : ALL_VALUE;
 
   // Narrow by category/subcategory FIRST so the common filter options only
   // ever offer values that exist within the current navigation scope.
@@ -294,36 +303,78 @@ const ProductList = () => {
     definitions,
     filters,
     setFilter,
-    clearAll,
     activeCount,
     filteredProducts,
   } = useProductFilters(scopedProducts);
 
-  const handleCategoryChange = useCallback((option) => {
-    setCategory(option.value);
-    setSubcategory(ALL_VALUE);
-    setCurrentPage(1);
-  }, []);
-
-  const handleSubcategoryChange = useCallback((option) => {
-    setSubcategory(option.value);
-    setCurrentPage(1);
-  }, []);
-
-  const handleFilterChange = useCallback(
-    (key, value) => {
-      setFilter(key, value);
-      setCurrentPage(1);
+  const handleCategoryChange = useCallback(
+    (option) => {
+      // Category, subcategory reset and page reset all go into a single
+      // navigation: separate updates would each start from the same `prev`
+      // params and overwrite one another.
+      updateParams(
+        (params) => {
+          if (option.value === ALL_VALUE) {
+            params.delete(CATEGORY_PARAM);
+          } else {
+            params.set(CATEGORY_PARAM, option.value);
+          }
+          params.delete(SUBCATEGORY_PARAM);
+        },
+        { resetPage: true },
+      );
     },
-    [setFilter],
+    [updateParams],
   );
 
+  const handleSubcategoryChange = useCallback(
+    (option) => {
+      updateParams(
+        (params) => {
+          if (option.value === ALL_VALUE) {
+            params.delete(SUBCATEGORY_PARAM);
+          } else {
+            params.set(SUBCATEGORY_PARAM, option.value);
+          }
+        },
+        { resetPage: true },
+      );
+    },
+    [updateParams],
+  );
+
+  // `setFilter` / `clearAll` already reset pagination in the same navigation.
+  const handleFilterChange = setFilter;
+
   const handleClearAll = useCallback(() => {
-    setCategory(ALL_VALUE);
-    setSubcategory(ALL_VALUE);
-    clearAll();
-    setCurrentPage(1);
-  }, [clearAll]);
+    updateParams(
+      (params) => {
+        params.delete(CATEGORY_PARAM);
+        params.delete(SUBCATEGORY_PARAM);
+        definitions.forEach((definition) => params.delete(definition.key));
+      },
+      { resetPage: true },
+    );
+  }, [updateParams, definitions]);
+
+  // Paginate. `totalPages` is computed before the pagination hook so a page
+  // number coming from the URL can be clamped to the pages that actually
+  // exist for the current filter/category selection.
+  const productsPerPage = PRODUCTS_PER_PAGE;
+  const totalPages = useMemo(
+    () => Math.ceil(filteredProducts.length / productsPerPage),
+    [filteredProducts.length, productsPerPage],
+  );
+
+  // Pagination changes (page number / Next / Previous) bring the products
+  // grid back into view instead of leaving the viewport wherever it was
+  // scrolled to on the previous page (e.g. resting on the old pagination
+  // controls). Filter/category resets above intentionally don't scroll, since
+  // the user is already looking at that part of the page.
+  const { currentPage, handlePageChange } = useListingPagination(
+    totalPages,
+    sectionRef,
+  );
 
   // Category + dependent Subcategory + the reusable common filter sections,
   // in a single list consumed by both the desktop sidebar and mobile drawer.
@@ -397,12 +448,7 @@ const ProductList = () => {
   const totalActiveCount = navActiveCount + activeCount;
   const hasActiveFilters = totalActiveCount > 0;
 
-  // Paginate
-  const productsPerPage = PRODUCTS_PER_PAGE;
-  const totalPages = useMemo(
-    () => Math.ceil(filteredProducts.length / productsPerPage),
-    [filteredProducts.length, productsPerPage],
-  );
+  // Slice the page currently in view out of the filtered results.
   const startIndex = useMemo(
     () => (currentPage - 1) * productsPerPage,
     [currentPage, productsPerPage],
@@ -522,7 +568,7 @@ const ProductList = () => {
                     <Pagination
                       currentPage={currentPage}
                       totalPages={totalPages}
-                      onPageChange={setCurrentPage}
+                      onPageChange={handlePageChange}
                     />
                   )}
                 </>

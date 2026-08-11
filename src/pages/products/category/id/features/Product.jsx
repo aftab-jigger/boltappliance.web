@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import {
   ChevronLeft,
@@ -25,6 +25,7 @@ import {
 } from "@/lib/categories";
 import { useProducts } from "@/context/ProductsContext";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
+import { getListingFrom } from "@/lib/listingNavigation";
 
 // Star Rating Component
 function StarRating({ rating, reviews, size = "default" }) {
@@ -602,8 +603,15 @@ function TabsSection({ product }) {
 
 export default function CategoryProductDetailPage() {
   const params = useParams();
+  const location = useLocation();
+  const navigate = useNavigate();
   const { getProductById, isLoading: isProductsLoading } = useProducts();
   const [quantity, setQuantity] = useState(1);
+
+  // The listing URL this page was opened from, carried in the history entry's
+  // state. Empty for direct visits (shared link, bookmark, new tab), in which
+  // case the back link falls back to the product's category page below.
+  const listingFrom = getListingFrom(location);
 
   // Derive product directly during render instead of via an effect — avoids
   // an unnecessary extra render pass and the "setState in effect" pitfall.
@@ -650,6 +658,12 @@ export default function CategoryProductDetailPage() {
   const categorySlug = getCategorySlugForProduct(product);
   const categoryName = getCategoryTitleForProduct(product);
 
+  // Back returns to the exact listing the product was opened from (page
+  // number, filters, sort, category/subcategory and search all preserved).
+  // Direct visits have no listing to return to, so they fall back to the
+  // product's own category page as before.
+  const backTo = listingFrom || `/products/${categorySlug}`;
+
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Header */}
@@ -661,9 +675,33 @@ export default function CategoryProductDetailPage() {
             categoryName={categoryName}
           />
 
-          {/* Back Button */}
+          {/* Back Button — returns to the exact listing view the product was
+              opened from. When we know we came from a listing we step back
+              through history, so this behaves identically to the browser's
+              own Back button (same history entry, same restored scroll
+              position). The `href` is still the listing URL, so
+              middle-click/open-in-new-tab keep working; direct visits have no
+              entry to go back to and simply follow the link. */}
           <Link
-            to={`/products/${categorySlug}`}
+            to={backTo}
+            onClick={
+              listingFrom
+                ? (event) => {
+                    if (
+                      event.defaultPrevented ||
+                      event.button !== 0 ||
+                      event.metaKey ||
+                      event.ctrlKey ||
+                      event.shiftKey ||
+                      event.altKey
+                    ) {
+                      return;
+                    }
+                    event.preventDefault();
+                    navigate(-1);
+                  }
+                : undefined
+            }
             className="inline-flex items-center gap-2 text-teal-600 hover:text-teal-700 transition-colors mb-4"
           >
             <ChevronLeft className="w-4 h-4" />
