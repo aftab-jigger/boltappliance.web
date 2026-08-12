@@ -338,6 +338,35 @@ export default function MainCategoryPage({ categorySlug }) {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
 
+  useEffect(() => {
+    const node = sectionRef.current;
+    if (!node) {
+      setIsVisible(true);
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 },
+    );
+
+    observer.observe(node);
+
+    const { top, bottom } = node.getBoundingClientRect();
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    if (top < viewportHeight && bottom > 0) {
+      setIsVisible(true);
+      observer.disconnect();
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   // `setFilter` / `clearAll` write to the URL and already reset pagination
   // within the same navigation, as does `setActiveSubcategory` above — so no
   // separate page-reset bookkeeping is needed here any more.
@@ -367,21 +396,6 @@ export default function MainCategoryPage({ categorySlug }) {
     totalPages,
     sectionRef,
   );
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.1 },
-    );
-
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
 
   const startIndex = (currentPage - 1) * PRODUCTS_PER_PAGE;
   const paginatedProducts = filteredProducts.slice(
