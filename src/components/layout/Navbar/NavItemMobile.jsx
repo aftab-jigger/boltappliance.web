@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { X, ChevronDown } from "lucide-react";
+import { X, ChevronDown, WashingMachine, Refrigerator, Microwave, Droplet } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CATEGORIES } from "@/lib/categories";
 
@@ -12,11 +12,18 @@ const linkClasses = ({ isActive }) =>
   }`;
 
 const subLinkClasses = ({ isActive }) =>
-  `block rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
+  `flex items-center gap-3 block rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
     isActive
       ? "bg-teal-500 text-white shadow-sm"
       : "text-gray-600 hover:bg-gray-100"
   }`;
+
+const iconFor = {
+  laundry: WashingMachine,
+  refrigeration: Refrigerator,
+  cooking: Microwave,
+  dishwashers: Droplet,
+};
 
 const NavItemMobile = ({ onNavigate, onClose }) => {
   const menuRef = useRef(null);
@@ -99,16 +106,22 @@ const NavItemMobile = ({ onNavigate, onClose }) => {
             </button>
             {isCategoriesOpen && (
               <div className="mt-1 ml-2 space-y-1 border-l-2 border-gray-100 pl-2">
-                {CATEGORIES.map((category) => (
-                  <NavLink
-                    key={category.slug}
-                    to={`/${category.slug}`}
-                    className={subLinkClasses}
-                    onClick={handleNavigate}
-                  >
-                    {category.title}
-                  </NavLink>
-                ))}
+                {CATEGORIES.map((category) => {
+                  const Icon = iconFor[category.slug];
+                  return (
+                    <NavLink
+                      key={category.slug}
+                      to={`/${category.slug}`}
+                      className={subLinkClasses}
+                      onClick={handleNavigate}
+                    >
+                      <span className="inline-flex items-center justify-center p-2 bg-neutral-100 rounded-md">
+                        {Icon ? <Icon className="h-4 w-4 text-neutral-700" /> : null}
+                      </span>
+                      <span>{category.title}</span>
+                    </NavLink>
+                  );
+                })}
               </div>
             )}
           </div>
