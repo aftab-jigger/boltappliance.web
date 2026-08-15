@@ -236,6 +236,23 @@ body {
   display: none;
 }
 
+/* Slim, low-key scrollbar for small in-card scroll areas (e.g. the
+   expanded features list), instead of the bulky OS-default scrollbar. */
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+}
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: var(--border);
+  border-radius: 9999px;
+}
+
 /* Subtle shimmer for image loading skeletons */
 .shimmer-surface {
   background: linear-gradient(
