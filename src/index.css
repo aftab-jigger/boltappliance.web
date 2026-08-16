@@ -361,3 +361,50 @@ body {
     animation: none;
   }
 }
+
+/* "Hire an Expert" CTA: reuses the Categories dropdown's rotating
+   conic-gradient outline verbatim — same --category-border-angle property,
+   same gradient stops, same category-border-orbit keyframe — in place of a
+   different hover/fade effect. The link keeps a 1px transparent border so
+   its box size is unchanged; this pseudo-element paints the animated ring
+   into that reserved space. No SVG arrow mask here (unlike the dropdown)
+   since the CTA is a plain rounded rectangle, not a popover. */
+.cta-glow-border {
+  --category-border-angle: 0deg;
+  position: relative;
+}
+
+.cta-glow-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: conic-gradient(
+    from var(--category-border-angle),
+    rgba(13, 148, 136, 0.13) 0%,
+    rgba(13, 148, 136, 0.13) 76%,
+    rgba(20, 184, 166, 0.3) 81%,
+    rgb(34, 211, 238) 87%,
+    rgb(20, 184, 166) 93%,
+    rgba(13, 148, 136, 0.22) 98%,
+    rgba(13, 148, 136, 0.13) 100%
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  animation: category-border-orbit 7.5s linear infinite;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-glow-border::before {
+    --category-border-angle: 54deg;
+    animation: none;
+  }
+}

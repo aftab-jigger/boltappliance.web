@@ -6,6 +6,7 @@ import {
   Refrigerator,
   Microwave,
   Droplet,
+  Phone,
 } from "lucide-react";
 import { CATEGORIES } from "@/lib/categories";
 import {
@@ -100,6 +101,22 @@ const NavItemsDesktop = () => {
       <NavLink to="/contact" className={linkClasses}>
         Contact
       </NavLink>
+
+      {/* Primary CTA: set apart from the nav links with extra left margin so
+          it reads as an action, not another link in the list. Kept as a
+          slim outline pill (not a solid fill) so it stays visually
+          secondary to the active Home pill. Border is transparent — the
+          visible outline is painted by .cta-glow-border, the Categories
+          dropdown's own rotating conic-gradient border animation reused
+          verbatim (see .category-dropdown-frame in index.css). Same
+          tel: link/number as the Phone card on the Contact page. */}
+      <a
+        href="tel:02079711031"
+        className="cta-glow-border ml-2 flex cursor-pointer items-center gap-1.5 rounded-md border border-transparent bg-transparent px-4 py-1.5 text-base font-medium text-teal-600 transition-colors duration-300 hover:bg-teal-500 hover:text-white"
+      >
+        <Phone className="h-3.5 w-3.5" />
+        Hire an Expert
+      </a>
     </div>
   );
 };
