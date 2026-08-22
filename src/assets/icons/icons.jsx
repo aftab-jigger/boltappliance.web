@@ -7,13 +7,17 @@
 // Lucide React Icons
 export {
   ArrowRight,
+  Award,
   ChevronDown,
   ChevronLeft,
   ChevronRight,
   ChevronsRight,
   Check,
   CheckCircle2,
+  ChefHat,
   Clock,
+  Droplets,
+  Headphones,
   Home,
   Mail,
   MapPin,
@@ -22,6 +26,7 @@ export {
   Plus,
   Phone,
   Quote,
+  Refrigerator,
   RotateCcw,
   Send,
   Share2,
@@ -33,7 +38,9 @@ export {
   Truck,
   Users,
   Users2,
+  WashingMachine,
   X,
+  Zap,
 } from "lucide-react"
 
 // WhatsApp icon for contact buttons
